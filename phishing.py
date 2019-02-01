@@ -91,8 +91,8 @@ def weixin_post():
     return re
 
 build_bp()
-run(host='0.0.0.0',port=8011)
+#run(host='0.0.0.0',port=8011)
 # Change working directory so relative paths (and template lookup) work again
-#os.chdir(os.path.dirname(__file__))
-#import bottle
-#application = bottle.default_app()
+os.chdir(os.path.dirname(__file__))
+import bottle
+application = bottle.default_app()

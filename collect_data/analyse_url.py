@@ -49,5 +49,5 @@ def analyse_black_url():
             write2file(result,'./data/black_data.csv','1')
     fr.close()
 
-analyse_white_url()
-analyse_black_url()
+#analyse_white_url()
+#analyse_black_url()

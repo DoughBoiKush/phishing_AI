@@ -17,7 +17,11 @@ see apache_phishing.conf
 #close selinux
 setenforce 0
 
-version
+#web and check work
+python phishing or loading in apache
+#spider url and analysis
+python collect_data/collect.py 
+#version
 1.0
 base on 2017.10.30
 2.0
