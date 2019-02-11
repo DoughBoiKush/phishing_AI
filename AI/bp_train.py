@@ -40,11 +40,8 @@ curdir = os.path.dirname(__file__)
 'Result']
 """
 net = None
-def build_bp():
-    global net
-    net = buildNetwork(30, 2, 1, bias=True, hiddenclass=TanhLayer)
-    ds = SupervisedDataSet(30, 1)
-    fp=open(os.path.join(curdir,"./collect_data/data/data.csv"), "r");
+def read_bp_data(ds,filename):
+    fp=open(os.path.join(curdir,filename), "r");
     alllines=fp.readlines();
     for eachline in alllines:
         data = eachline.rstrip('\n').split(',')
@@ -55,14 +52,22 @@ def build_bp():
         target = data_int[len(data_int)-1:len(data_int)]
         ds.addSample(input,target)
     fp.close()
-    #print len(ds)
+
+def train_bp():
+    global net
+    net = buildNetwork(30, 2, 1, bias=True, hiddenclass=TanhLayer)
+    ds = SupervisedDataSet(30, 1)
+    read_bp_data(ds,"../collect_data/data/data.csv")
+    read_bp_data(ds,"../collect_data/data/white_data.csv")
+    read_bp_data(ds,"../collect_data/data/black_data.csv")
+    print len(ds)
     #for inpt, target in ds:
         #print inpt, target
-#    trainer = BackpropTrainer(net, ds)
-#    trainer.trainUntilConvergence(maxEpochs=10000)
-#    NetworkWriter.writeToFile(net, os.path.join(curdir,'./bpstudy.xml'))
-    net = NetworkReader.readFrom(os.path.join(curdir,'./collect_data/data/bpstudy.xml'))
+    trainer = BackpropTrainer(net, ds)
+    trainer.trainUntilConvergence(maxEpochs=10000)
+    NetworkWriter.writeToFile(net, os.path.join(curdir,'../collect_data/data/bpstudy.xml'))
     #test
+    '''
     fp=open(os.path.join(curdir,"./collect_data/data/data.csv"), "r");
     alllines=fp.readlines();
     for eachline in alllines:
@@ -74,7 +79,4 @@ def build_bp():
         target = data_int[len(data_int)-1:len(data_int)]
         #print net.activate(input)
     fp.close()
-
-def activate_bp(input):
-    return net.activate(input)
-
+    '''

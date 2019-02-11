@@ -6,7 +6,7 @@ sys.path.append(curdir)
 from bottle import route,request,template,view,run,Bottle,static_file,get, post, request 
 from plog import *
 from collect_data.features import *
-from bp import *
+from AI.bp import *
 from weixin import *
 
 @route('/static/js/<path>')  

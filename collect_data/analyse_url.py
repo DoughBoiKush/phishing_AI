@@ -8,8 +8,9 @@ def write2file(result,filename,isphishing):
     fr = open(os.path.join(curdir,filename), 'r')
     for line in fr.readlines():
         if line == res:
-            print "repeat...... " + res
+            print "analyse repeat...... " + res
             return
+    fr.close()
     fw = open(os.path.join(curdir,filename),'a+')
     fw.write(res)
     fw.close()

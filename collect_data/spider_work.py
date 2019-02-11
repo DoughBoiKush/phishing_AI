@@ -80,8 +80,19 @@ class WhiteSpider:
         result=s.parse_data()
         return result
 
+def write2file(result,filename):
+    fr = open(os.path.join(curdir,filename), 'r')
+    for line in fr.readlines():
+        if line == result:
+            print "spider repeat...... " + result
+            return
+    fr.close()
+    fw = open(os.path.join(curdir,filename),'a+')
+    fw.write(result)
+    fw.close()
+
 def WhiteSpider_work():
-    fw = open(os.path.join(curdir,'./data/white.txt'), 'w')
+    filename = './data/white.txt'
     d = SLD()
     ws = WhiteSpider()
     result = ws.get_all_result()
@@ -90,12 +101,12 @@ def WhiteSpider_work():
         host = d.get_second_level_domain(i)
         print host
         if host!="" and host!=None:
-	    fw.write(host+'\n')
+            write2file(host+'\n',filename)
 
 def BlackSpider_work():
-    fb = open(os.path.join(curdir,'./data/black.txt'), 'w')
+    filename = './data/black.txt'
     bs = BlackSpider()
     result = bs.get_all_result()
     for i in result:
         print "%s\n////////////"%i
-        fb.write(i+'\n')
+        write2file(i+'\n',filename)

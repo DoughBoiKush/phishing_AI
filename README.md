@@ -19,8 +19,8 @@ setenforce 0
 
 #web and check work
 python phishing or loading in apache
-#spider url and analysis
-python collect_data/collect.py 
+#spider,analysis,bp etc. task
+python schedule.py 
 #version
 1.0
 base on 2017.10.30
